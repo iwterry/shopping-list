@@ -1,14 +1,22 @@
 // ################################################## Helper functions ############################################
 
-function quantityChecker(itemQuantity) { // itemQuantity is assumed to be a string
+function checkName(itemName) { // itemName is assumed to be a string
+	return itemName.search(/[^ ]/g) !== -1; // only returns true if itemName contains something other than single space characters
+}
+
+function checkQuantity(itemQuantity) { // itemQuantity is assumed to be a string
 	var validFormat = itemQuantity.match(/^[0-9]+\.?0*$/) != null;
 	return validFormat && itemQuantity > 0; // return true only if itemQuantity represents a positive whole number; otherwise, false is returned  
 }
 
-function costPerQuantityChecker(itemCostPerQuantity) { // itemCostPerQuantity is assumed to be a string
+function checkCostPerQuantity(itemCostPerQuantity) { // itemCostPerQuantity is assumed to be a string
 	var validFormat = itemCostPerQuantity.match(/^[0-9]*\.?[0-9]{0,2}0*$/) != null;
 	return validFormat && (+itemCostPerQuantity > 0) // should return true only if itemCostPerQuantity represents a positive number that
 														// does not feature a nonzero number beyond the hundredths place; otherwise, false is returned; 
+}
+
+function checkInputs(itemName, itemQuantity, itemCostPerQuantity) { // all arguments are assumed to be strings
+	return checkName(itemName) && checkQuantity(itemQuantity) && checkCostPerQuantity(itemCostPerQuantity);
 }
 
 function showInvalidInputMessage() {
@@ -72,7 +80,7 @@ $(document).ready(function() {
 		};
 		
 		// check some user inputs
-		if(quantityChecker(itemObj.quantity) && costPerQuantityChecker(itemObj.costPerQuantity)){ // valid inputs
+		if(checkInputs(itemObj.name, itemObj.quantity, itemObj.costPerQuantity)) { // valid inputs
 			itemObj.totalCost = roundTotalCostNearestCent(itemObj.quantity * itemObj.costPerQuantity); // a new property the item object 
 			
 			showCost("allReviewCosts", itemObj.totalCost); // since the item has been added by the user, it must the item must now be reviewed by the user							
@@ -86,12 +94,14 @@ $(document).ready(function() {
 			createButtonAndCheckboxEvents($('#reviewItems').find("#item-" + itemObj.num)); // allow the user to modify, delete, or verify the item 
 		
 			itemNum += 1; // increment before leaving the function so that the next item the user submits will have a different item number 
+		
+			$(this).find("input[type='text'], textarea").val(''); // clear previous entries 
 		}
 		else {
 			showInvalidInputMessage(); 
 		}
 		
-		$(this).find("input[type='text']").val(''); // clear previous entries in the text boxes
+		
 	});
 	
 
@@ -129,8 +139,9 @@ function createButtonAndCheckboxEvents(reviewItemsDiv) {
 		$(this).siblings(doneButton).css('display', 'inline-block');
 		
 		// the user should not be able to delete or verify the item
-		verifyBox.attr("disabled", true);
-		deleteButton.attr("disabled", true);
+		verifyBox.css("display", "none");
+		deleteButton.css("display", "none");
+		$(this).siblings("span").css("display", "none");
 	});
 	
 	
@@ -144,7 +155,7 @@ function createButtonAndCheckboxEvents(reviewItemsDiv) {
 			valueBeforeUpdate,
 			valueAfterUpdate;
 		
-		if(quantityChecker(itemQuantity) && costPerQuantityChecker(itemCostPerQuantity) && itemName===''){ // valid inputs
+		if(checkInputs(itemName, itemQuantity, itemCostPerQuantity)) { // valid inputs
 			allTextInputs.attr("disabled", true); // unable to edit item's information
 			
 			// Show total cost of the items that need to be reviewed:
@@ -159,8 +170,9 @@ function createButtonAndCheckboxEvents(reviewItemsDiv) {
 			$(this).siblings(editButton).css('display', 'inline-block');
 			
 			// the user should be able to delete or verify the item
-			verifyBox.attr("disabled", false);
-			deleteButton.attr("disabled", false);
+			verifyBox.css("display", "inline-block");
+			deleteButton.css("display", "inline-block");
+			$(this).siblings("span").css("display", "inline-block");
 		}
 		else {
 			showInvalidInputMessage();
@@ -169,14 +181,17 @@ function createButtonAndCheckboxEvents(reviewItemsDiv) {
 	
 	// ------------------------------------- allow the user to delete the item ----------------------- 
 	deleteButton.click(function() { // user finished reviewing the item and want to delete the item
-		showCost( "allReviewCosts", -getItemTotalCost(this)); // show that total costs of all items to be reviewed after eliminating this item's cost
-		
-		showNumOfItems("numOfReviewItems", -1); // decrement by one the number of items left to be reviewed
-		
-		/* Note that "-" sign indicates the item's cost must be eliminated (or subtracted) from the total cost of all items that must
-			  be reviewed since the item has been chosen to be deleted by the user, and therefore, its cost should not longer be counted. */
-			 
-		deleteItem(this); 
+		var okayToDelete = confirm("Confirm that you wish to delete this item.");
+		if(okayToDelete) {
+			showCost( "allReviewCosts", -getItemTotalCost(this)); // show that total costs of all items to be reviewed after eliminating this item's cost
+			
+			showNumOfItems("numOfReviewItems", -1); // decrement by one the number of items left to be reviewed
+			
+			/* Note that "-" sign indicates the item's cost must be eliminated (or subtracted) from the total cost of all items that must
+				  be reviewed since the item has been chosen to be deleted by the user, and therefore, its cost should no longer be counted. */
+				 
+			deleteItem(this); 
+		}	
 	});
 	
 	// ------------------------------ allow the user to verify that the item belongs on the shopping list ----------------
@@ -301,7 +316,7 @@ function createDivForButtonsAndCheckbox(){
 		.append("<input type='button' name='edit' value='Edit'>")
 		.append("<input type='button' name='done' value='Done'>")
 		.append("<input type='button' name='delete' value='Delete'>")
-		.append("Verify <input type='checkbox' name='verify' value='Verify'>");
+		.append("<span>Verify</span> <input type='checkbox' name='verify' value='Verify'>");
 		
 	// adding some horizontal distance between the button inputs
 	$(div).find("input[name='delete']").css("margin", "0em 1.5em"); 

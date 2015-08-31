@@ -9,6 +9,11 @@ section {
 	padding: 0em 1em 1.5em 1em; 
 }
 
+.text-section {
+	width: 80%;
+	margin: 0em auto; 
+}
+
 /* make the form a little presentable  by adding a bordering and center the form and the elements inside it */
 form#insertInfo { 
 	border: 2px solid gray; 
@@ -57,6 +62,8 @@ form#insertInfo input[type="submit"] {
 hr {
 	clear: left; 
 }
+
+
 
 input[type="submit"]:hover, 
 input[type="button"]:hover, 

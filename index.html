@@ -13,11 +13,13 @@
 	<body>
 		<h1>Shopping Plans</h1>
 		<section>
-			<h2>Add an item to your shopping list</h2>		
-			<p>In this section, you can decide what element you want to add to your shopping list by filling out the information 
-			in the rectangle box below this paragraph. Please keep that all monetary units are in U.S dollars and the cost does not
-			take into account any taxes. In addition, you need to fill out the item's name, quantity, and cost per quantity if you wish
-			to add the item to your shopping list.</p>
+			<div class="text-section">
+				<h2>Add an item to your shopping list</h2>		
+				<p>In this section, you can decide what item you want to add to your shopping list by filling out the information 
+				in the rectangle box below this paragraph. Please note that any monetary value entered are assumed to be in U.S dollars and the cost does not
+				take into account any taxes. In addition, you <strong>must</strong> to fill out the item's name, quantity, and cost per quantity if you wish
+				to add the item to your shopping list. If you want, you can add any additional information about the item.</p>
+			</div>
 			<form id="insertInfo">
 				<p>Item's Name:</p>
 				<input type="text" name="item-name" placeholder="e.g., Oatmeal" autofocus required>
@@ -26,28 +28,30 @@
 				<p>Item's Cost per Quantity:</p> 
 				&#36;<input type="text" name="item-costPerQuantity" placeholder="e.g., 2.19 or 1111.21" required> 
 				<p>Additional Information:</p>
-				<textarea rows=4 cols=23 maxlength=200 placeholder="Enter any information that is under 200 characters."></textarea>
+				<textarea rows=4 cols=23 maxlength=200 placeholder="Optional. Enter any information under 200 characters."></textarea>
 				<input type="submit" name="submit" value="Add item">
 			</form>
 		</section>
 		<hr>
 		<section>
-			<h2>Review items eligible to be in your shopping list</h2>
-			<h3>Total cost for all <span id="numOfReviewItems">0</span> items that need to be reviewed is <span id="allReviewCosts">&#36;0</span>.</h3>
-			<p>In this section, you are able to review all items that you chose to add to your shopping list. The items in this section are 
-			not yet in your shopping list. To place an item into your shopping list, you must click the checkbox to verify that you wish
-			to add the item's information as it is. You can also choose to edit any information about the item that you want to add to 
-			your shopping list, or you can delete the item if you are no longer interested in having the item in your shopping list.</p>
-			<div id="reviewItems">
+			<div class="text-section">
+				<h2>Review items eligible to be in your shopping list</h2>
+				<p>In this section, you are able to review all items that you chose to add to your shopping list. The items in this section are 
+				not yet in your shopping list. To place an item into your shopping list, you must click the checkbox to verify that you wish
+				to add the item's information as it is. You can also choose to edit any information about the item that you want to add to 
+				your shopping list, or you can delete the item if you are no longer interested in having that item in your shopping list.</p>
+				<h3>Total cost for the <span id="numOfReviewItems">0</span> item(s) that need to be reviewed is <span id="allReviewCosts">&#36;0</span>.</h3>
 			</div>
+			<div id="reviewItems"></div>
 		</section>
 		<hr>
 		<section>
-			<h2>Your shopping list</h2>
-			<h3>Total cost for all <span id="numOfVerifiedItems">0</span> items that have been verified is <span id="allVerifiedCosts">&#36;0</span>.</h3>
-			<p>Any item in this section is in your shopping list</p>
-			<div id="verifiedItems">
+			<div class="text-section">
+				<h2>Your shopping list</h2>
+				<p>In this section, you can see all the items that you verified that you wanted in your shopping list.</p>
+				<h3>Total cost for the <span id="numOfVerifiedItems">0</span> item(s) that have been verified is <span id="allVerifiedCosts">&#36;0</span>.</h3>
 			</div>
+			<div id="verifiedItems"></div>
 		</section>
 	</body>
 </html>
