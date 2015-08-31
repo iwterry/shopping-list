@@ -297,8 +297,7 @@ function createDivForButtonsAndCheckbox(){
 	
 	$(div).css({
 			width: "14em", 
-			margin: "3em  auto 0em auto",
-			padding: "0.5em"
+			margin: "3em  auto 0em auto"
 		})
 		.append("<input type='button' name='edit' value='Edit'>")
 		.append("<input type='button' name='done' value='Done'>")
