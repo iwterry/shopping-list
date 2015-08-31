@@ -315,7 +315,7 @@ function createDivForButtonsAndCheckbox(){
 	$(div).find("input[type='checkbox']").css({
 		width: "1.2em", 
 		height: "1.2em", 
-		"vertical-align": "top"
+		"vertical-align": "middle"
 	});
 	 
 
