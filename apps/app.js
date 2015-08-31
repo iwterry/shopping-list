@@ -231,10 +231,10 @@ function createDivForUserInterface(itemObj) {
 	$(div).attr('id', 'item-' + itemObj.num) //give divBig an item number to differentiate it from other items the user chooses to enter.
 		.css({							// styling
 			border: "2px dashed green", 
-			width: "17em", 
+			width: "16em", 
 			display: "inline-block",
 			"padding-bottom": "1em",
-			margin: "1em auto"
+			margin: "1em 0.5em"
 		})
 		.append(divSmallOne) //Attach divSmallOne and divSmallTwo to divBig
 		.append(divSmallTwo);	
