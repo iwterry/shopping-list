@@ -296,8 +296,9 @@ function createDivForButtonsAndCheckbox(){
 	var div = document.createElement('div'); 
 	
 	$(div).css({
-			width: "14em", 
-			margin: "3em  auto 0em auto"
+			width: "16em", 
+			margin: "3em  auto 0em auto",
+			"text-align": "center"
 		})
 		.append("<input type='button' name='edit' value='Edit'>")
 		.append("<input type='button' name='done' value='Done'>")
@@ -305,7 +306,7 @@ function createDivForButtonsAndCheckbox(){
 		.append("Verify <input type='checkbox' name='verify' value='Verify'>");
 		
 	// adding some horizontal distance between the button inputs
-	$(div).find("input[name='delete']").css("margin", "0em 1em"); 
+	$(div).find("input[name='delete']").css("margin", "0em 1.5em"); 
 	
 	 // make the "done" Button disappear because the user should not be able to see it until after the edit button is clicked
 	$(div).find("input[name='done']").css("display", "none");
