@@ -41,7 +41,22 @@ form#insertInfo input[type="submit"] {
 }
 
 
+@media only screen and (min-width: 633px) {
+	#reviewItems div, #verifiedItems  div{
+		float: left;
+		margin: 1em 0.5em; 
+	}
+}
 
+@media only screen and (max-width: 632px) {
+	#reviewItems div, #verifiedItems  div{
+		margin: 1em auto;
+	}
+}
+
+hr {
+	clear: left; 
+}
 
 input[type="submit"]:hover, 
 input[type="button"]:hover, 
