@@ -193,7 +193,7 @@ function createButtonAndCheckboxEvents(reviewItemsDiv) {
 			var div = $(this).parent().siblings(); // this is contains all the labels and the final user inputs as well as the item's total cost
 			div.css({ // styling 
 				border: "2px solid green", 
-				margin: "0em 1em 1em",
+				margin: "0em auto 1em auto",
 				width: "13em",
 				"float": "left",
 				"padding-bottom": "1em"
@@ -234,7 +234,7 @@ function createDivForUserInterface(itemObj) {
 			width: "17em", 
 			display: "inline-block",
 			"padding-bottom": "1em",
-			margin: "1em"
+			margin: "1em auto"
 		})
 		.append(divSmallOne) //Attach divSmallOne and divSmallTwo to divBig
 		.append(divSmallTwo);	
@@ -264,8 +264,11 @@ function createDivForLabelsAndTextInputs(itemObj) {
 	
 	textarea.attr("disabled", true)
 			.val(itemObj.additionalInfo);
-	
-	$(div).css("padding", "0em 2em")
+			
+	$(div).css({
+			padding: "0em 2em",
+			margin: "0em auto"
+		})
 		.append("<p>Name:</p>")
 		.append("<input type='text' name='itemName' value=" + itemObj.name  + " disabled>")
 		.append("<p>Quantity:</p>")
