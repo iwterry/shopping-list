@@ -295,25 +295,29 @@ function createDivForButtonsAndCheckbox(){
 	
 	var div = document.createElement('div'); 
 	
-	$(div).css({width: "15em", margin: "3em  auto 0em auto"})
+	$(div).css({
+			width: "14em", 
+			margin: "3em  auto 0em auto",
+			padding: "0.5em"
+		})
 		.append("<input type='button' name='edit' value='Edit'>")
 		.append("<input type='button' name='done' value='Done'>")
 		.append("<input type='button' name='delete' value='Delete'>")
-		.append("<input type='checkbox' name='verify' value='Verify'> Verify");
+		.append("Verify <input type='checkbox' name='verify' value='Verify'>");
 		
 	// adding some horizontal distance between the button inputs
-	$(div).find("input[name='delete']").css("margin-left", "1.2em"); 
+	$(div).find("input[name='delete']").css("margin", "0em 1.5em"); 
 	
-	 // make the "done" Button disappear because the user should not be able to use it just yet
+	 // make the "done" Button disappear because the user should not be able to see it until after the edit button is clicked
 	$(div).find("input[name='done']").css("display", "none");
 	
 	// styling the checkbox
 	$(div).find("input[type='checkbox']").css({
 		width: "1.2em", 
 		height: "1.2em", 
-		"margin-left": "2.2em",
 		"vertical-align": "top"
 	});
 	 
+
 	 return div; 
 }
