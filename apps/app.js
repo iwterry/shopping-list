@@ -1,3 +1,47 @@
+/*
+GENERAL: 
+1. There are to much comments. You should have a comments just above the parts of code which seems you harder to understand, not for basic things such as declaring variables, calling functions etc...
+2. Don't know if you heard or saw similar thing, but there are patterns for commenting your code, this is one of the patterns for commenting functions (see real example from my work bellow):
+
+* Check does item or object exist in array or in array of objects
+* @param (array | Object) array
+* @param {String | Number | Object} item
+* @returns {boolean}
+validateDuplicates: function(array, item){
+	if(array.length && typeof array[0] != 'object') {
+		return !(array.indexOf(item) >= 0);
+	} else {
+		return !$filter('filter')(array, item, true).length;
+	}
+}
+3. I advice you to use jQuery noConflict method because of browsers compatibility and variable name usaging
+4. When declaring variable try to avoid duplicate key word var. See example bellow:
+var var1 = "",
+	var2 = true,
+	var3 = [1,2,34,456,true,"something"],
+	varObj = {
+		item1: "test",
+		item2: {
+			[
+				arrayItem1: "value",
+				arrayItem2: "value another"
+			],
+		complex: false
+		},
+		plainItem: "test item"
+	},
+	varN = 456.19;
+5. Helper functions are great idea. Next time try to separate logic from DOM manipulation. My suggestion would be to make helper functions just for logic and to use jQuery events for DOM manipulations. 
+Example: getItemTotalCostDOM function 
+6. function createButtonAndCheckboxEvents is to big - try to rearange code inside and to make it more understandable. Remember KISS rule - Keep it Short and Simple
+7. From my experience it's not good to use jQuery css function. Instead of it you could use addClass, removeClass, and toggleClass functions
+8. Instead of using jQuery .append functions and adding many code HTML lines in JS I would advise you:
+a) first of all to make whole HTML as one string variable
+b) after it to dedicate it through .html function 
+Ref: See createDivForLabelsAndTextInputs function
+
+ */
+
 // ################################################## Helper functions ############################################
 
 function checkName(itemName) { // itemName is assumed to be a string
