@@ -1,10 +1,14 @@
+/*missing definition for general things
+1. body, html
+2. *{margin:0; padding: 0;border: 0;} - some browsers are setting this element by default - but with this code line you will explicitely prevent it
+*/
 
-
+/*this is regular, but I think better practice would be to dedicate a class to your element how could you prevent this style applying for all h1 tags on your whole app*/
 h1 { 
 	margin-top: 2em;
 	text-align: center; 
 }
-
+/*the same comment as it was for h1 tag*/
 section {
 	padding: 0em 1em 1.5em 1em; 
 }
@@ -29,7 +33,7 @@ form#insertInfo   p {
 form#insertInfo  input[type="text"] { 
 	margin-top: 0em; 
 }
-
+/*the same comment as it was the case for h1 and section tags*/
 textarea  {
 	max-height: 4.5em;
 	max-width: 13em; 
@@ -58,13 +62,13 @@ form#insertInfo input[type="submit"] {
 		margin: 1em auto;
 	}
 }
-
+/*the same comment as it was the case for h1, section and textarea tags*/
 hr {
 	clear: left; 
 }
 
 
-
+/*I think here you made good job because you applied css style on it which is really acceptable for whole app*/
 input[type="submit"]:hover, 
 input[type="button"]:hover, 
 input[type="checkbox"]:hover {
